@@ -1,0 +1,7 @@
+#!/bin/bash
+r=1
+w=2
+x=3
+somme=$((r+w+x))
+echo $somme
+

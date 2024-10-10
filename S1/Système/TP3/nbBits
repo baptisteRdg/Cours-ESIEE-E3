@@ -1,0 +1,8 @@
+#!/bin/bash
+echo Saisir un nombre de bits
+read -r ans
+if [[ $ans -gt 0 ]]; then
+	echo Voici le nombre d\'octets $((ans/8))
+else
+	echo Votre valeur est inférieur à 0 !
+fi

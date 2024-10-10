@@ -1,0 +1,15 @@
+#!/bin/bash
+end=1
+somme=0
+while($end)
+	echo Saisir un nombre de bits
+	read -r ans
+		if [[ $input == "q" ]];then
+		end=0;
+	elif [[ $ans -gt 0 ]]; then
+		somme+=$((ans/8))
+	else
+		echo Votre valeur est inférieur à 0 !
+	fi
+done
+echo

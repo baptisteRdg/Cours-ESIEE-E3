@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Entrez une suite de mots :
+read -r ans
+un=$(echo $ans | cut -d' ' -f1)
+trois=$(echo $ans | cut -d' ' -f3)
+echo $un  $trois

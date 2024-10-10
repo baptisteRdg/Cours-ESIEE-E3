@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo Entrez un mot :
+read -r ans
+echo $ans $ans
