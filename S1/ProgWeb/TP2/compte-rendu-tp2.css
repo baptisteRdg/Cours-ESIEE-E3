@@ -1,0 +1,64 @@
+body{
+    font-family: sans-serif;
+}
+h1{
+    font-size:26pt;
+}
+h2{
+    font-size: 22pt;
+    color: lightgray;
+}
+h3{
+    font-size:18pt ;
+}
+.centered{
+    text-align: center;
+}
+.right{
+    text-align: right;
+}
+a{
+    font-weight: bold;
+}
+a:hover{
+    font-weight: 400;
+    color: teal;
+}
+
+ol{
+    list-style:upper-roman;
+}
+
+#table-films {
+    width: 100%;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    th, td {
+    padding: 10px;
+    border: 1px solid black; 
+    }
+    thead {
+        font-variant: small-caps;
+        text-align: center;
+        background-color: rgb(185, 184, 184);
+    }
+    th:nth-child(1),
+    td:nth-child(1),
+    th:nth-child(2),
+    td:nth-child(2) {
+    text-align: left;
+    }
+
+    tbody tr:nth-child(even){
+        background-color: rgba(158, 213, 213, 0.671);
+    }
+    tbody tr:hover{
+        background-color: rgb(38,24,44);
+        color: aliceblue;
+    }
+}
+
+
+
