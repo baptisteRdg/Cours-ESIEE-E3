@@ -1,0 +1,15 @@
+#!/bin/bash
+
+fichier_sortie=$1       # récupère le fichier de sortie
+shift                   # décale les paramètres
+
+# Init du fichier de sortie
+ > $fichier_sortie
+
+while test "$1"; do     # pour chaque répertoire
+    if [[ -d "$1" ]];then     
+        n=$(ls -p $1 | grep -v / | wc -l)   # calcul du nombre de fichier
+        echo "Il y a $n fichiers dans $1" >> $fichier_sortie # résultat dans le fichier de sortie
+    fi
+    shift 
+done

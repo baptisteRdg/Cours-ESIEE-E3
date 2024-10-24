@@ -1,0 +1,9 @@
+#!/bin/bash
+for arg in "$@"; do             # pour chaque arg 
+    size=${#arg}                # récupère la taille de l'arg
+    if [[ $size == 3 ]];then    # si de taille trois
+        echo $arg" - Ok"
+    elif [[ $size > 3 ]];then   # si plus de trois
+        echo $arg" - Trop"
+    fi
+done

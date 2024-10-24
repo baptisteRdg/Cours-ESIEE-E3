@@ -1,39 +1,53 @@
 %include "asm_io.inc"
 
-SECTION data
-promt1 : db "mon programme fonctionne", 0
+SECTION .data
+    phrase_print: db "Bonjour tout le monde !", 0xA, 0
 
 SECTION .text
-global main
-main :
-    mov eax, promt1     ; place dans eax le texte à afficher
-    call print_string2   ; appel de la fonction print
+    global main
 
-    ; fin programme 
-    mov ebx, 0
-    mov eax, 1
-    int 0x80
+main: 
+    ; Affiche la phrase
+    push phrase_print
+    call print_string2
+    jmp fin
 
+print_string2: 
+    ; Début de la fonction
+    push ebp
+    mov ebp, esp
 
-print_string2 :
-    ; sauvegarde les registres dans la pile
-    push eax
-    push ebx
-    push ecx
-    push edx 
-        
-    mov ebx, 1
-    mov ecx, ebp
-    add ecx, 8
-    mov edx, 1
-    mov eax, 4  ; appel système write pour afficher eax
-    int 0x80
+    ; Sauvegarde du registre esi
+    push esi
 
-    ; restaure les registres depuis la pile 
-    pop edx
-    pop ecx
-    pop ebx
-    pop eax
-    ret         ; retourne dans l'ancien programme 
+    ; Récupère l'adresse de la chaîne depuis la pile
+    mov esi, [ebp + 8]  ; esi pointe vers le début de la chaîne
 
-    
+boucle:
+    mov al, [esi]       ; Charge le caractère à l'adresse esi dans al
+    cmp al, 0           ; Si c'est le caractère nul, on sort de la boucle
+    je fin_boucle
+
+    ; Appel système pour écrire le caractère
+    mov eax, 4          ; sys_write
+    mov ebx, 1          ; file descriptor 1 (stdout)
+    mov ecx, esi        ; pointeur vers le caractère à afficher
+    mov edx, 1          ; longueur = 1
+    int 0x80            ; appel système
+
+    inc esi             ; Passe au caractère suivant
+    jmp boucle          ; Continue la boucle
+
+fin_boucle:
+    ; Restaure le registre esi
+    pop esi
+    ; Restaure ebp et termine la fonction
+    mov esp, ebp
+    pop ebp
+    ret
+
+fin: 
+    ; Code de sortie
+    mov eax, 1          ; sys_exit
+    mov ebx, 0          ; code de retour 0
+    int 0x80            ; appel système

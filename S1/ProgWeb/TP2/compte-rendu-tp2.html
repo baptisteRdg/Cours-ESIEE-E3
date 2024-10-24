@@ -1,6 +1,8 @@
-<!DOCTYPE html>  
-<html>  
+<!DOCTYPE html>
+<html lang="fr">  
 <head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Éléments et entêtes</title>  
     <link rel="stylesheet" href="compte-rendu-tp2.css" type="text/css"/>
 </head>  
@@ -8,27 +10,27 @@
     <h1 class="centered">TP2 Feuille de style, boite et inline</h1>
     
     <div class="right">
-        Baptiste RODRIGUES
+        <p>Baptiste RODRIGUES</p>
     </div>
 
     <p>Lien vers le cours : <a href="http://forax.github.io/course/progweb/">lien du cours</a></p>
-    
 
-    <h2 style="color: brown;">Exercice 1 - Style de base</h2>
-    <p>Pour cette exo j'ai rien appris de plus, juste l'utilisation du style directement dans le fichier html est une pratique rare que je fais jamais.</p>
-
+    <h2  style="color: brown;">Exercice 1 - Style de base</h2>
+    <p>Pour cette exo, je n'ai rien appris de plus, juste l'utilisation du style directement dans le fichier HTML, une pratique rare que je ne fais jamais.</p>
 
     <h2>Exercice 2 - Style de liste et de table</h2>
     <ol>
-    <li>Feuille de style css externe</li>
-    <li>Chiffres romains pour chaque questions</li>
-    <li>Table des films du box office :</li>
+        <li>Feuille de style CSS externe</li>
+        <li>Chiffres romains pour chaque question</li>
+        <li>Table des films du box office :</li>
+    </ol>
+    
     <table id="table-films">
         <thead>
             <tr>
-                <th>rank</th>
-                <th>titre</th>
-                <th>gross</th>
+                <th>Rank</th>
+                <th>Titre</th>
+                <th>Gross</th>
             </tr>
         </thead>
         <tbody>
@@ -59,19 +61,23 @@
             </tr>
         </tbody>
     </table>
-    
-    
-    <li>Taille du tableau</li>
-    <li>Centrage et police des titres</li>
-    <li>Alignement des valeurs</li>
-    <li>padding</li>
-    <li>Couleur de fond des lignes paires</li>
-    <li>sélection d'une ligne</li>
+
+    <ol start="4">
+        <li>Taille du tableau</li>
+        <li>Centrage et police des titres</li>
+        <li>Alignement des valeurs</li>
+        <li>Padding</li>
+        <li>Couleur de fond des lignes paires</li>
+        <li>Sélection d'une ligne</li>
+    </ol>
 
     <h2>Exercice 3 - Vignettes</h2>
     <ol>
-    <li>Récupération des images</li>
-
+        <li>Récupération des images</li>
+        <li>Réaction si la taille de l'écran change horizontalement</li>
+    </ol>
+    <p>Après avoir changé la disposition des vignettes avec float, elles sont dans la même ligne. Si nous augmentons la taille de la fenêtre, les images peuvent tenir sur une seule ligne.</p>
+    <p>J'ai changé la taille de base du fichier HTML pour qu'il fasse 1700px de large afin d'afficher les vignettes comme dans le TP, sans devoir changer la taille des images.</p>
 
 </body>
 </html>

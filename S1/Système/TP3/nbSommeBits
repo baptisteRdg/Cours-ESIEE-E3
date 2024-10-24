@@ -1,15 +1,19 @@
 #!/bin/bash
-end=1
+end=true
 somme=0
-while($end)
-	echo Saisir un nombre de bits
-	read -r ans
-		if [[ $input == "q" ]];then
-		end=0;
-	elif [[ $ans -gt 0 ]]; then
-		somme+=$((ans/8))
-	else
-		echo Votre valeur est inférieur à 0 !
-	fi
+
+while $end; do
+    echo "Saisir un nombre de bits (ou 'q' pour quitter) :"
+    read -r ans
+
+    if [[ $ans == 'q' ]]; then        				 # Si l'utilisateur saisit 'q', on quitte le programme
+        end=false
+    elif [[ $ans =~ ^[0-9]+$ && $ans -gt 0 ]]; then  # Vérifie que l'entrée est un nombre positif
+        somme=$((somme + ans / 8))      			# Ajoute le nombre d'octets à la somme
+    else
+        echo "Votre valeur est inférieure à 0 ou non valide !"
+    fi
 done
-echo
+
+echo "Nombre d'octets : $somme"
+ 

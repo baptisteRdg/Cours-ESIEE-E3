@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+      "use strict";
+      const centreX = 400  
+      const centreY = 400 
+      const centre = [centreX, centreY]; 
+
+
+
+      // Fonction pour dessiner, afin de pas avoir trop de lignes de codes en doubles
+      function drawn(contexte, centre ,new_position,px, color){
+        contexte.lineWidth = px;
+        contexte.strokeStyle = color;
+        contexte.beginPath();
+        contexte.moveTo(centre[0],centre[1]);
+        contexte.lineTo(new_position[0], new_position[1]);
+        contexte.stroke();
+      }
+
+      function get_xy_cercle(point, radius,angle){
+        let a = point[0] + radius  * Math.cos(angle - Math.PI / 2);
+        let b = point[1] + radius  * Math.sin(angle - Math.PI / 2);
+        return [a,b];
+      }
+
+     
+
+      function refresh(canvas, contexte) {
+        console.log("tick !");
+        const radius =  (Math.min(canvas.height, canvas.width) * 0.85)/2
+        const date = new Date();
+        console.log("Heure :", date.getHours(), ", Minutes :", date.getMinutes(), ", Secondes :", date.getSeconds());  
+        console.log("Canvas width :", canvas.width, ", height :", canvas.height); 
+
+        contexte.clearRect(0, 0, canvas.width, canvas.height);  // Effacer le canvas d'avant
+
+        // un cercle :
+        contexte.strokeStyle = '#b0f2b6';
+        contexte.lineWidth = 5;
+        contexte.beginPath();
+        contexte.arc(centreX,centreY,radius, 0, Math.PI * 2 );
+        contexte.stroke();
+
+           
+
+        // Secondes    
+        const angle_s = Math.PI * 2 * ((date.getMilliseconds() + (date.getSeconds()*1000)) / 60000);    // J'avais envie de faire un troteuse qui bouge en continue donc avec les milisecondes  
+        const point_s = get_xy_cercle(centre, radius, angle_s);
+        drawn(contexte,centre, point_s, 2, "#ed6a61");
+
+        // Minutes
+        const m_angle = Math.PI * 2 * (date.getMinutes()/60);
+        const point_m = get_xy_cercle(centre, radius, m_angle);
+        drawn(contexte, centre, point_m, 3, "#303030");
+
+        // Aiguille des heures
+        const h_angle = Math.PI * 2 * (date.getHours() / 12);   // Calcul de l'angle depuis l'heure 
+        const positions_h = get_xy_cercle(centre, (radius*0.8), h_angle); // obtention des coordonnées depuis l'angle 
+        drawn(contexte, centre, positions_h, 6,"#787878" );
+
+         // traits des heures 
+         for (let i=0;i<12;i++){// pour chaque heures 
+          let angle = Math.PI * 2 * (i / 12);  // obtention de l'heure 
+          let point_haut = get_xy_cercle(centre, radius,angle)  // obtention du point en haut
+          let point_bas = get_xy_cercle(centre, (radius*0.9), angle); // point bas (car le trait commence pas au centre)
+          drawn(contexte, point_bas, point_haut, 3,"#7bb35d");
+        }
+
+
+        }
+
+      window.onload = () => {
+        const canvas = document.getElementById("clock");
+        const contexte = canvas.getContext('2d');
+        window.setInterval(() => refresh(canvas, contexte), 40);
+      };
+
+    </script>
+</head>
+<body>
+    <h2>Oh, ma belle horloge !</h2>
+    <canvas id="clock" width="800" height="800"></canvas>
+</body>
+</html>

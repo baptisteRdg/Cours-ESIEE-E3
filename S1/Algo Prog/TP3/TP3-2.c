@@ -1,28 +1,40 @@
 #include <stdio.h>
+#include <ctype.h>
 
-int wc(char* txt){
-    char c; 
-    int chars=0;
-    int word=0;
-    int lignes=0;
-    while ((c = fgetc(stdin))!= EOF){
-        chars++;
+void wc() {
+    int caracteres = 0; 
+    int mots = 0;       
+    int lignes = 0;     
+    int in_word = 0;  
+    int c;            
 
-        switch (c){
-        case'\n':
-            lignes++;
-            break;
-        
-        case' '|'\t':
-            word++;
-            break;
-        default:
-            break;
+    printf("Saisir du texte (Ctrl+D pour quitter) :\n");
+
+    while ((c = getchar()) != EOF) { // Lire jusqu'à la fin de fichier
+        caracteres++; 
+
+        if (c == '\n') {lignes++; }
+
+        if (isspace(c)) { // trouvé sur internet pour trouver si c'est espace
+            if (in_word) {
+                mots++;
+                in_word = 0; // plus dans un mot
+            }
+        } else {
+            in_word = 1; // dans un mot
         }
-        
-
-        
     }
-    
+
+    if (in_word) {
+        mots++;
+    }
+
+    printf("Caractères : %d\n", caracteres);
+    printf("Mots : %d\n", mots);
+    printf("Lignes : %d\n", lignes);
+}
+
+int main() {
+    wc();
     return 0;
 }

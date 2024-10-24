@@ -1,0 +1,32 @@
+#!/bin/bash
+
+saut=1
+mode=0
+
+# Vérif des options                 >> Trouvé sur internet <<
+while getopts "c:" opt; do
+    case $opt in
+        c)
+            step=$OPTARG
+            mode=1
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+# Récupérer les arguments restants
+shift $((OPTIND - 1))
+debut=$1
+fin=$2
+
+if [ "$mode" == 1 ]; then   # Si option 
+    for (( i=debut; i<=fin; i+=saut )); do
+        echo "$i"
+    done
+else
+    for (( i=debut; i<=fin; i++ )); do
+        echo "$i"
+    done
+fi

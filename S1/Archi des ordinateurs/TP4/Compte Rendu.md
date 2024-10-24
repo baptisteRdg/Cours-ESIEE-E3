@@ -1,6 +1,9 @@
-
+# Comtpe Rendu TP4
+> RODRIGUES Baptiste
+> CHAZELLE Etienne
 
 ## Exercice 1
+
 
 |Instruction|Explication| esp | eax |
 |:--|:--|--:|--:|
@@ -49,5 +52,12 @@ suite :
 print_int :
     ...
 ```
-## Exercice 10
+## Exercice 10, 11 et 12
 
+Voir programme
+
+
+
+## Conclusion
+
+Pendant le TP notre plus grande difficulté et bloquage a été l'exercice 10 avec l'appel système pour write, pour le reste des exercices nos erreurs étaient classique et après une ou deux relectures elles étaient trouvées.
